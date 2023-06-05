@@ -20,7 +20,7 @@ class Miniplayer extends StatefulWidget {
   final double minHeight, maxHeight;
 
   ///Option to enable and set elevation for the miniplayer
-  final double elevation;
+  final double? elevation;
 
   ///Central API-Element
   ///Provides a builder with useful information
@@ -59,7 +59,7 @@ class Miniplayer extends StatefulWidget {
     required this.maxHeight,
     required this.builder,
     this.curve = Curves.easeOut,
-    this.elevation = 0,
+    this.elevation,
     this.backgroundColor,
     this.valueNotifier,
     this.duration = const Duration(milliseconds: 300),
@@ -211,12 +211,12 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
                           constraints: BoxConstraints.expand(),
                           child: widget.builder(height, _percentage),
                           decoration: BoxDecoration(
-                            boxShadow: <BoxShadow>[
+                            boxShadow: widget.elevation !=null ? <BoxShadow>[
                               BoxShadow(
                                   color: widget.backgroundBoxShadow,
-                                  blurRadius: widget.elevation,
+                                  blurRadius: widget.elevation!,
                                   offset: Offset(0.0, 4))
-                            ],
+                            ] : null,
                             color: widget.backgroundColor ??
                                 Theme.of(context).scaffoldBackgroundColor,
                           ),
