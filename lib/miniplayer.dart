@@ -29,6 +29,9 @@ class Miniplayer extends StatefulWidget {
   ///Option to set the animation curve
   final Curve curve;
 
+  ///Sets the max height background-color of the miniplayer
+  final Color? maxHeightBackgroundColor;
+
   ///Sets the background-color of the miniplayer
   final Color? backgroundColor;
 
@@ -60,6 +63,7 @@ class Miniplayer extends StatefulWidget {
     required this.builder,
     this.curve = Curves.easeOut,
     this.elevation,
+    this.maxHeightBackgroundColor,
     this.backgroundColor,
     this.valueNotifier,
     this.duration = const Duration(milliseconds: 300),
@@ -217,7 +221,7 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
                                   blurRadius: widget.elevation!,
                                   offset: Offset(0.0, 4))
                             ] : null,
-                            color: widget.backgroundColor ??
+                            color: widget.maxHeightBackgroundColor ??
                                 Theme.of(context).scaffoldBackgroundColor,
                           ),
                         ),
